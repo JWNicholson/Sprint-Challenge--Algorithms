@@ -114,7 +114,19 @@ class SortingRobot:
                 # there is nothing in hand. move to next position on right and run again
                 self.move_right()
 
-            
+            else:
+                #if there is nothing in the list
+                self.swap_item()
+                #if light is already off
+                if not self.light_is_on():
+                    break
+
+                #reset the light
+                self.set_light_off()
+
+                #move to beginning of list
+                while self.can_move_left() == True:
+                    self.move_left()
         
 
 
