@@ -97,7 +97,37 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        while True:
+            # start at 0 - swap to pickup the first card 
+            self.swap_item()
+            # if right move available, move right
+            if self.can_move_right() == True:
+                self.move_right()
+                # if the card in hand is greater swap cards and turn on light
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+
+                # move left to swap with empty space
+                self.move_left()
+                self.swap_item()
+                # there is nothing in hand. move to next position on right and run again
+                self.move_right()
+
+            else:
+                #if there is nothing in the list
+                self.swap_item()
+                #if light is already off
+                if not self.light_is_on():
+                    break
+
+                #reset the light
+                self.set_light_off()
+
+                #move to beginning of list
+                while self.can_move_left() == True:
+                    self.move_left()
+        
 
 
 if __name__ == "__main__":
